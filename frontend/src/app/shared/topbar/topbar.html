@@ -1,0 +1,58 @@
+<header class="topbar">
+
+  <!-- Left Section -->
+  <div class="topbar-left">
+
+    <h2 class="page-title">Dashboard</h2>
+
+    <span class="divider"></span>
+
+    <span class="market-name">
+      <i class="material-icons">store</i>
+      Market Manager
+    </span>
+
+     <!-- Search Bar -->
+  <div class="search-container">
+
+    <i class="material-icons search-icon">search</i>
+
+    <input
+      type="text"
+      placeholder="Search anything..."
+    >
+
+    <span class="search-shortcut">⌘ K</span>
+
+  </div>
+
+
+  </div>
+
+ 
+  <!-- Right Section -->
+  <div class="topbar-right">
+
+    <div class="current-time">
+      <i class="material-icons">schedule</i>
+      <span>{{ currentTime() | date:'HH:mm' }}</span>
+    </div>
+
+    <span class="divider"></span>
+
+    <div class="admin-profile">
+
+      <div class="profile-icon">
+        <i class="material-icons">person</i>
+      </div>
+
+      <div class="admin-info">
+        <span class="admin-name">Admin</span>
+        <span class="admin-role">Administrator</span>
+      </div>
+
+    </div>
+
+  </div>
+
+</header>

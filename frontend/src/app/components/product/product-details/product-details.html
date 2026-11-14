@@ -1,0 +1,56 @@
+<div class="product-info">
+  <div class="info-header">
+    <h3>Product Information</h3>
+    <div class="modal-actions">
+      <button class="edit-btn" type="button" title="Edit product">
+        <span class="material-icons">edit</span>
+        Edit
+      </button>
+      <button class="close-btn" type="button" title="Close" aria-label="Close product details" (click)="closeProductDetails()">
+        <span class="material-icons">close</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="info-list">
+    <div class="info-item">
+      <span>Product Name</span>
+      <strong>{{ product.name }}</strong>
+    </div>
+
+    <div class="info-item">
+      <span>SKU</span>
+      <strong>{{ product.sku }}</strong>
+    </div>
+
+    <div class="info-item">
+      <span>Category</span>
+      <strong>{{ product.category?.name || product.category }}</strong>
+    </div>
+
+    <div class="info-item">
+      <span>Price</span>
+      <strong>{{ product.price }} DH</strong>
+    </div>
+
+    <div class="info-item">
+      <span>Stock Quantity</span>
+      <strong>{{ product.stock }}</strong>
+    </div>
+
+    <div class="info-item">
+      <span>Status</span>
+      <strong
+        [class.available]="product.status === 'Available'"
+        [class.low-stock]="product.status === 'Low Stock'"
+        [class.out-stock]="product.status === 'Out of Stock'">
+        {{ product.status }}
+      </strong>
+    </div>
+
+    <div class="info-item description">
+      <span>Description</span>
+      <strong>{{ product.description || 'No description provided.' }}</strong>
+    </div>
+  </div>
+</div>

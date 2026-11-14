@@ -1,0 +1,46 @@
+.dashboard-layout {
+  display: flex;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: transparent;
+}
+
+app-sidebar {
+  width: 260px;
+  flex: 0 0 260px;
+  display: block;
+}
+
+.main-layout {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+app-topbar {
+  height: 72px;
+  flex: 0 0 72px;
+  display: block;
+}
+
+.content {
+  flex: 1;
+  min-width: 0;
+  padding: 28px clamp(20px, 3vw, 36px) 40px;
+  overflow-y: auto;
+}
+
+@media (max-width: 900px) {
+  app-sidebar {
+    width: 84px;
+    flex-basis: 84px;
+  }
+}
+
+@media (max-width: 650px) {
+  app-topbar {
+    height: 64px;
+    flex-basis: 64px;
+  }
+}

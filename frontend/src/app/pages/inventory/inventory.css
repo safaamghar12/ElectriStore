@@ -1,0 +1,9 @@
+:host {
+  display: block;
+}
+
+.inventory-page {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}

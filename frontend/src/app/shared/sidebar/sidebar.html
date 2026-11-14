@@ -1,0 +1,58 @@
+<aside class="sidebar">
+
+  <!-- Logo -->
+  <div class="logo">
+    <div class="logo-icon">
+      <!-- <i class="material-icons">store</i> -->
+        <img src="/apple-touch-icon.png" alt="Electristore logo">
+    </div>
+    <span>Electristore</span>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="sidebar-nav">
+
+     @for (item of menuItems; track item.route) {
+    <a
+      [routerLink]="item.route"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }">
+
+      <i class="material-icons">{{ item.icon }}</i>
+      <span> {{ item.label }}</span>
+
+    </a>
+  }
+
+  </nav>
+
+  <!-- Bottom section -->
+  <div class="sidebar-bottom">
+
+    <a routerLink="/help" routerLinkActive="active">
+      <i class="material-icons">help_outline</i>
+      <span>Help & Support</span>
+    </a>
+
+    <!-- Admin Profile -->
+    <div class="profile">
+
+      <div class="avatar">
+        A
+      </div>
+
+      <div class="profile-info">
+        <span class="admin-name">Admin</span>
+        <span class="admin-role">Administrator</span>
+      </div>
+
+      <button class="logout-btn" title="Logout" (click)="logout()">
+        <i class="material-icons">logout</i>
+      </button>
+
+    </div>
+
+  </div>
+  
+</aside>
+

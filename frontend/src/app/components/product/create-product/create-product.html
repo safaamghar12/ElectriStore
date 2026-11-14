@@ -1,0 +1,63 @@
+<section class="create-product">
+  <div class="form-heading">
+    <div>
+      <h2>Create Product</h2>
+      <p>Add a product to your inventory.</p>
+    </div>
+  </div>
+
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <div class="form-grid">
+      <label>
+        Product name
+        <input type="text" formControlName="name" autocomplete="off" />
+        @if (form.controls.name.touched && form.controls.name.hasError('required')) {
+          <span class="field-error">Product name is required.</span>
+        }
+      </label>
+
+      <label>
+        SKU
+        <input type="text" formControlName="sku" autocomplete="off" />
+        @if (form.controls.sku.touched && form.controls.sku.hasError('required')) {
+          <span class="field-error">SKU is required.</span>
+        }
+      </label>
+
+      <label>
+        Category ID
+        <input type="number" formControlName="categoryId" min="1" step="1" />
+        @if (form.controls.categoryId.touched && form.controls.categoryId.invalid) {
+          <span class="field-error">Enter a category ID greater than zero.</span>
+        }
+      </label>
+
+      <label>
+        Price (DH)
+        <input type="number" formControlName="price" min="0" step="0.01" />
+        @if (form.controls.price.touched && form.controls.price.invalid) {
+          <span class="field-error">Enter a valid price of zero or more.</span>
+        }
+      </label>
+
+      <label>
+        Stock quantity
+        <input type="number" formControlName="stock" min="0" step="1" />
+        @if (form.controls.stock.touched && form.controls.stock.invalid) {
+          <span class="field-error">Enter a whole number of zero or more.</span>
+        }
+      </label>
+    </div>
+
+    @if (errorMessage()) {
+      <p class="form-error" role="alert">{{ errorMessage() }}</p>
+    }
+
+    <div class="form-actions">
+      <button type="button" class="cancel-button" (click)="cancelled.emit()">Cancel</button>
+      <button type="submit" class="submit-button" [disabled]="isSubmitting()">
+        {{ isSubmitting() ? 'Saving...' : 'Create Product' }}
+      </button>
+    </div>
+  </form>
+</section>

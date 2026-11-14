@@ -1,0 +1,16 @@
+<div class="inventory-page">
+  <app-inventory-stats></app-inventory-stats>
+  <app-toolbar (click)="handleToolbarClick($event)"></app-toolbar>
+  @if (isCreatingProduct()) {
+    <app-create-product
+      (cancelled)="closeCreateProduct()"
+      (created)="onProductCreated()">
+    </app-create-product>
+  } @else {
+    <app-product-list
+      [products]="products"
+      [isLoading]="isLoading"
+      [errorMessage]="errorMessage">
+    </app-product-list>
+  }
+</div>

@@ -1,0 +1,122 @@
+<div class="products-container">
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>PRODUCT</th>
+          <th>SKU</th>
+          <th>CATEGORY</th>
+          <th>PRICE</th>
+          <th>STOCK</th>
+          <th>STATUS</th>
+          <th>ACTIONS</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @if (isLoading()) {
+          <tr>
+            <td colspan="7" class="loading">Loading products...</td>
+          </tr>
+        } @else {
+          @for (product of paginatedProducts; track product.id) {
+            <tr>
+              <td>
+                <div class="product-info">
+                  <div class="product-image">
+                    <span class="material-icons">inventory_2</span>
+                  </div>
+
+                  <div>
+                    <strong>{{ product.name }}</strong>
+                  </div>
+                </div>
+              </td>
+              <td>{{ product.sku }}</td>
+              <td>{{ product.category?.name }}</td>
+
+              <td class="price">{{ product.price }} DH</td>
+
+              <td
+                class="stock"
+                [class.stock-low]="product.status === 'Low Stock'"
+                [class.stock-out]="product.status === 'Out of Stock'"
+              >
+                {{ product.stock }}
+              </td>
+
+              <td>
+                <span
+                  class="status"
+                  [class.available]="product.status === 'Available'"
+                  [class.low-stock]="product.status === 'Low Stock'"
+                  [class.out-stock]="product.status === 'Out of Stock'"
+                >
+                  {{ product.status }}
+                </span>
+              </td>
+
+              <td>
+                <div class="actions">
+                  <button class="view-btn" type="button" title="View Product" (click)="viewProduct(product)">
+                    <span class="material-icons">visibility</span>
+                  </button>
+
+                  <button class="edit-btn" type="button" title="Edit" (click)="editProduct()">
+                    <span class="material-icons">edit</span>
+                  </button>
+
+                  <button class="delete-btn" type="button" title="Delete" (click)="deleteProduct()">
+                    <span class="material-icons">delete</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          } @empty {
+            <tr>
+              <td colspan="7" class="table-empty">
+                <strong>No products found.</strong>
+                <span>Try adjusting your search or filters.</span>
+              </td>
+            </tr>
+          }
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <div class="pagination">
+    <button
+      type="button"
+      [disabled]="currentPage === 1"
+      (click)="currentPage = currentPage - 1">
+      Previous
+    </button>
+
+    <span>Page {{ currentPage }} of {{ totalPages }}</span>
+
+    <button
+      type="button"
+      [disabled]="currentPage === totalPages || totalPages === 0"
+      (click)="currentPage = currentPage + 1">
+      Next
+    </button>
+  </div>
+
+  @if (errorMessage()) {
+    <div class="error-message" role="alert">
+      {{ errorMessage() }}
+    </div>
+  }
+</div>
+
+@if (selectedProduct) {
+  <div class="modal-overlay" (click)="closeProductDetails()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <app-product-details
+        [product]="selectedProduct"
+        (close)="closeProductDetails()">
+      </app-product-details>
+    </div>
+  </div>
+}
